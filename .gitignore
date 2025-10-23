@@ -33,3 +33,9 @@ logs
 # Temporary files
 *.tmp
 *.temp
+
+# Google Apps Script (contains sensitive config)
+code.gs
+
+# Documentation folder
+docs/

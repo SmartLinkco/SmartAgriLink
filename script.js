@@ -158,74 +158,233 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// ==================== CONFIGURATION ====================
+// Replace this with your Google Apps Script Web App URL
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx_vwex0oclj8TtuCqD7NlfRzPf52vMEo2ihHcDJysfmOPPtupLb5ZoILeEf5ONerst9w/exec';
+
 // ==================== FORM SUBMISSION ==================== 
-function submitWaitlist(event) {
+async function submitWaitlist(event) {
     event.preventDefault();
     
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
+    const form = event.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerHTML;
     
-    // Here you would typically send the data to your backend
-    console.log('Waitlist submission:', data);
+    // Disable submit button and show loading state
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
     
-    // Show success message
-    alert(`Thank you for joining the waitlist! We'll be in touch soon at ${data.email}`);
+    const formData = new FormData(form);
+    const data = {
+        action: 'waitlist',
+        ...Object.fromEntries(formData.entries())
+    };
     
-    // Close modal and reset form
-    closeModal();
-    
-    // In production, you would send this to your backend API
-    // Example:
-    // fetch('/api/waitlist', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(data)
-    // })
-    // .then(response => response.json())
-    // .then(result => {
-    //     alert('Success! Check your email for confirmation.');
-    //     closeModal();
-    // })
-    // .catch(error => {
-    //     alert('Something went wrong. Please try again.');
-    // });
+    try {
+        const response = await fetch(GAS_WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Important for Google Apps Script
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        // Note: With no-cors mode, we can't read the response
+        // So we assume success if no error is thrown
+        
+        // Close modal
+        closeModal();
+        
+        // Show success notification
+        showSuccessNotification('waitlist', data.fullName, data.category);
+        
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        showErrorNotification('Failed to submit. Please try again or contact support@smartagrilink.com');
+    } finally {
+        // Re-enable button
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+    }
     
     return false;
 }
 
 // ==================== NEWSLETTER SUBSCRIPTION ==================== 
-function subscribeNewsletter(event) {
+async function subscribeNewsletter(event) {
     event.preventDefault();
     
-    const emailInput = event.target.querySelector('input[type="email"]');
-    const email = emailInput.value;
+    const form = event.target;
+    const emailInput = form.querySelector('input[type="email"]');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonHTML = submitButton.innerHTML;
     
-    // Here you would typically send the email to your backend
-    console.log('Newsletter subscription:', email);
+    // Show loading state
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     
-    // Show success message
-    alert(`Thank you for subscribing! You'll receive updates at ${email}`);
+    const data = {
+        action: 'newsletter',
+        email: emailInput.value,
+        source: 'Footer Form'
+    };
     
-    // Reset form
-    emailInput.value = '';
-    
-    // In production, you would send this to your backend API
-    // Example:
-    // fetch('/api/newsletter', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ email })
-    // })
-    // .then(response => response.json())
-    // .then(result => {
-    //     alert('Successfully subscribed to newsletter!');
-    //     emailInput.value = '';
-    // })
-    // .catch(error => {
-    //     alert('Something went wrong. Please try again.');
-    // });
+    try {
+        const response = await fetch(GAS_WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        // Reset form
+        emailInput.value = '';
+        
+        // Show success notification
+        showSuccessNotification('newsletter', data.email);
+        
+    } catch (error) {
+        console.error('Error subscribing:', error);
+        showErrorNotification('Failed to subscribe. Please try again.');
+    } finally {
+        // Re-enable button
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonHTML;
+    }
     
     return false;
+}
+
+// ==================== SUCCESS NOTIFICATION ==================== 
+function showSuccessNotification(type, name, category = '') {
+    // Create notification container
+    const notification = document.createElement('div');
+    notification.className = 'success-notification';
+    notification.id = 'successNotification';
+    
+    const categoryNames = {
+        farmers: 'Farmers & Input Suppliers',
+        buyers: 'Buyers & Processors',
+        logistics: 'Logistics Partners',
+        ngos: 'Agri NGOs & Researchers'
+    };
+    
+    let content = '';
+    
+    if (type === 'waitlist') {
+        content = `
+            <div class="notification-content">
+                <div class="notification-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="notification-body">
+                    <h3>Welcome to SmartAgriLink! 🎉</h3>
+                    <p>Thank you, <strong>${name}</strong>! You've successfully joined our waitlist as <strong>${categoryNames[category]}</strong>.</p>
+                    <div class="notification-details">
+                        <p><i class="fas fa-envelope"></i> Check your email for a confirmation message with next steps.</p>
+                        <p><i class="fas fa-bell"></i> We'll notify you when we're ready to onboard your category.</p>
+                    </div>
+                    <div class="notification-actions">
+                        <button class="btn-notification-primary" onclick="closeSuccessNotification()">
+                            Got it!
+                        </button>
+                        <button class="btn-notification-secondary" onclick="window.location.href='#home'">
+                            Back to Home
+                        </button>
+                    </div>
+                </div>
+                <button class="notification-close" onclick="closeSuccessNotification()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+    } else if (type === 'newsletter') {
+        content = `
+            <div class="notification-content notification-compact">
+                <div class="notification-icon-small">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="notification-body-compact">
+                    <h4>Successfully Subscribed! 📬</h4>
+                    <p>Thank you! We've added <strong>${name}</strong> to our newsletter.</p>
+                </div>
+                <button class="notification-close-small" onclick="closeSuccessNotification()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+    }
+    
+    notification.innerHTML = content;
+    document.body.appendChild(notification);
+    
+    // Trigger animation
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Auto-close newsletter notification after 5 seconds
+    if (type === 'newsletter') {
+        setTimeout(() => {
+            closeSuccessNotification();
+        }, 5000);
+    }
+}
+
+function closeSuccessNotification() {
+    const notification = document.getElementById('successNotification');
+    if (notification) {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }
+}
+
+// ==================== ERROR NOTIFICATION ==================== 
+function showErrorNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'error-notification';
+    notification.id = 'errorNotification';
+    
+    notification.innerHTML = `
+        <div class="notification-content notification-compact">
+            <div class="notification-icon-small error">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="notification-body-compact">
+                <h4>Oops! Something went wrong</h4>
+                <p>${message}</p>
+            </div>
+            <button class="notification-close-small" onclick="closeErrorNotification()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Auto-close after 7 seconds
+    setTimeout(() => {
+        closeErrorNotification();
+    }, 7000);
+}
+
+function closeErrorNotification() {
+    const notification = document.getElementById('errorNotification');
+    if (notification) {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }
 }
 
 // ==================== PARALLAX EFFECT ==================== 
