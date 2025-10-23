@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartAgriLink - Empowering Africa's Agriculture with Smart Connections. A scalable digital supply chain platform linking farmers, buyers, and logistics.">
+    <title>SmartAgriLink - Connecting Farms, Empowering Futures</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="logo.svg" alt="SmartAgriLink Logo">
+                    <span>SmartAgriLink</span>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#framework" class="nav-link">Framework</a></li>
+                    <li><a href="#network" class="nav-link">Join Network</a></li>
+                    <li><a href="#benefits" class="nav-link">Benefits</a></li>
+                </ul>
+                <button class="cta-btn-nav" onclick="scrollToSection('network')">Join Waitlist</button>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+            <div class="network-animation"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in">
+                    Empowering Africa's Agriculture with Smart Connections
+                </h1>
+                <p class="hero-subtitle fade-in-delay">
+                    A scalable digital supply chain linking farmers, buyers, and logistics — powered by AI-driven demand forecasting.
+                </p>
+                <div class="hero-cta fade-in-delay-2">
+                    <button class="btn btn-primary" onclick="scrollToSection('network')">
+                        <i class="fas fa-rocket"></i> Join the Waitlist
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('framework')">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Implementation Framework Section -->
+    <section class="framework" id="framework">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Implementation Framework</h2>
+                <p class="section-description">
+                    SmartAgriLink aims to build and deploy a scalable digital supply chain platform that connects farmers directly with buyers, processors, and logistics services, while using AI-driven demand forecasting to align production with market needs across Ghana and Africa.
+                </p>
+            </div>
+            
+            <div class="stakeholders-grid">
+                <div class="stakeholder-card scroll-reveal">
+                    <div class="stakeholder-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Farmers</h3>
+                    <p>Direct market access and fair pricing for their produce</p>
+                </div>
+                
+                <div class="stakeholder-card scroll-reveal">
+                    <div class="stakeholder-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Buyers</h3>
+                    <p>Reliable supply chains and quality assurance</p>
+                </div>
+                
+                <div class="stakeholder-card scroll-reveal">
+                    <div class="stakeholder-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Processors</h3>
+                    <p>Streamlined operations and demand forecasting</p>
+                </div>
+                
+                <div class="stakeholder-card scroll-reveal">
+                    <div class="stakeholder-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Logistics</h3>
+                    <p>Optimized routes and efficient delivery systems</p>
+                </div>
+                
+                <div class="stakeholder-card scroll-reveal">
+                    <div class="stakeholder-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>NGOs</h3>
+                    <p>Data-driven insights for agricultural development</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist & Onboarding Section -->
+    <section class="network" id="network">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Join the SmartAgriLink Network</h2>
+                <p class="section-description">
+                    Be among the first to experience Africa's next-generation agricultural supply chain platform. Choose your category and join our pre-launch waitlist.
+                </p>
+            </div>
+            
+            <div class="waitlist-cards">
+                <div class="waitlist-card scroll-reveal">
+                    <div class="card-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Farmers & Input Suppliers</h3>
+                    <p>Get direct access to buyers, receive fair prices, and access input financing opportunities.</p>
+                    <button class="btn btn-card" onclick="openModal('farmers')">
+                        Join Waitlist <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="waitlist-card scroll-reveal">
+                    <div class="card-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Buyers & Processors</h3>
+                    <p>Source quality produce directly from farmers with transparent pricing and AI-powered demand insights.</p>
+                    <button class="btn btn-card" onclick="openModal('buyers')">
+                        Join Waitlist <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="waitlist-card scroll-reveal">
+                    <div class="card-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Logistics Partners</h3>
+                    <p>Optimize your delivery routes and join a network connecting farms to markets efficiently.</p>
+                    <button class="btn btn-card" onclick="openModal('logistics')">
+                        Join Waitlist <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="waitlist-card scroll-reveal">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Agri NGOs & Researchers</h3>
+                    <p>Access aggregated data and insights to drive agricultural innovation and policy development.</p>
+                    <button class="btn btn-card" onclick="openModal('ngos')">
+                        Join Waitlist <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why SmartAgriLink?</h2>
+                <p class="section-description">
+                    Transforming African agriculture through technology and innovation
+                </p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Transparency</h3>
+                    <p>End-to-end visibility across the entire supply chain</p>
+                </div>
+                
+                <div class="benefit-item scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Fair Pricing</h3>
+                    <p>Market-driven prices that benefit both farmers and buyers</p>
+                </div>
+                
+                <div class="benefit-item scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data-Driven Planning</h3>
+                    <p>Make informed decisions with real-time market insights</p>
+                </div>
+                
+                <div class="benefit-item scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Insights</h3>
+                    <p>Predictive analytics for demand forecasting and optimization</p>
+                </div>
+                
+                <div class="benefit-item scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Logistics Coordination</h3>
+                    <p>Seamless coordination from farm to final destination</p>
+                </div>
+                
+                <div class="benefit-item scroll-reveal">
+                    <div class="benefit-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile-First Access</h3>
+                    <p>Easy access from any device, anywhere, anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Be Part of Africa's Next Agri-Digital Revolution</h2>
+                <p class="cta-description">Join thousands of stakeholders transforming agriculture across the continent</p>
+                <button class="btn btn-large" onclick="scrollToSection('network')">
+                    <i class="fas fa-rocket"></i> Join the Waitlist Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.svg" alt="SmartAgriLink Logo">
+                        <span>SmartAgriLink</span>
+                    </div>
+                    <p class="footer-tagline">Connecting Farms, Empowering Futures.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#framework">Framework</a></li>
+                        <li><a href="#network">Join Network</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest news and updates</p>
+                    <form class="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartAgriLink. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Waitlist Modal -->
+    <div class="modal" id="waitlistModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Join the Waitlist</h2>
+                <p id="modalDescription">Fill in your details to get early access</p>
+            </div>
+            <form class="waitlist-form" onsubmit="return submitWaitlist(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="organization">Organization/Farm Name</label>
+                    <input type="text" id="organization" name="organization">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Location (City/Region) *</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                
+                <input type="hidden" id="category" name="category">
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-check"></i> Join Waitlist
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "name": "smartagrilink-landing",
+  "version": "1.0.0",
+  "description": "Modern landing page for SmartAgriLink - A Digital Agriculture Supply Chain Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server .",
+    "build": "echo 'No build process required for static site'",
+    "deploy": "echo 'Configure your deployment command here'"
+  },
+  "keywords": [
+    "agriculture",
+    "supply-chain",
+    "africa",
+    "digital-platform",
+    "ai",
+    "landing-page"
+  ],
+  "author": "SmartAgriLink",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SmartLinkco/SmartAgriLink.git"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
