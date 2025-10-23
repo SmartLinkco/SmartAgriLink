@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npx serve .",
     "dev": "npx live-server .",
-    "build": "echo 'No build process required for static site'",
-    "deploy": "echo 'Configure your deployment command here'"
+    "build": "node -e \"const fs=require('fs'); fs.mkdirSync('public', {recursive:true}); ['index.html','styles.css','script.js','logo.svg','SmartAgriLink.png'].forEach(f=>fs.existsSync(f)&&fs.copyFileSync(f,'public/'+f));\"",
+    "deploy": "vercel --prod"
   },
   "keywords": [
     "agriculture",
