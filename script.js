@@ -160,7 +160,7 @@ document.addEventListener('keydown', (e) => {
 
 // ==================== CONFIGURATION ====================
 // Replace this with your Google Apps Script Web App URL
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx_vwex0oclj8TtuCqD7NlfRzPf52vMEo2ihHcDJysfmOPPtupLb5ZoILeEf5ONerst9w/exec';
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyrhV3-b94oeD_qvBbLA8IK-4p1RiS9BCNMhwkGvmrL-eXwn05gDV4JPLcwgyYa768pqg/exec';
 
 // ==================== FORM SUBMISSION ==================== 
 async function submitWaitlist(event) {
@@ -201,7 +201,7 @@ async function submitWaitlist(event) {
         
     } catch (error) {
         console.error('Error submitting form:', error);
-        showErrorNotification('Failed to submit. Please try again or contact support@smartagrilink.com');
+        showErrorNotification('Failed to submit. Please try again or contact smartagrilink@gmail.com');
     } finally {
         // Re-enable button
         submitButton.disabled = false;
@@ -536,4 +536,4 @@ window.addEventListener('load', () => {
 
 // ==================== CONSOLE MESSAGE ==================== 
 console.log('%c🌾 SmartAgriLink - Connecting Farms, Empowering Futures 🌾', 'color: #6fbd43; font-size: 20px; font-weight: bold;');
-console.log('%cWelcome to SmartAgriLink! Interested in joining our team? Contact us at careers@smartagrilink.com', 'color: #1e3a5f; font-size: 14px;');
+console.log('%cWelcome to SmartAgriLink! Interested in joining our team? Contact us at smartagrilink@gmail.com', 'color: #1e3a5f; font-size: 14px;');
