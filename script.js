@@ -17,7 +17,8 @@ window.addEventListener('scroll', () => {
 });
 
 // Mobile menu toggle
-mobileToggle.addEventListener('click', () => {
+mobileToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent event from bubbling to document
     navLinksContainer.classList.toggle('active');
     const icon = mobileToggle.querySelector('i');
     icon.classList.toggle('fa-bars');
@@ -32,6 +33,19 @@ navLinks.forEach(link => {
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
     });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    const isClickInsideNav = navLinksContainer.contains(e.target);
+    const isClickOnToggle = mobileToggle.contains(e.target);
+    
+    if (!isClickInsideNav && !isClickOnToggle && navLinksContainer.classList.contains('active')) {
+        navLinksContainer.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
 });
 
 // Update active navigation link

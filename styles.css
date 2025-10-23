@@ -828,6 +828,7 @@ section {
         box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
         transition: var(--transition-normal);
         gap: 1.5rem;
+        z-index: 1000;
     }
     
     .nav-links.active {
@@ -836,6 +837,13 @@ section {
     
     .mobile-toggle {
         display: block;
+        position: relative;
+        z-index: 1001;
+        transition: var(--transition-normal);
+    }
+    
+    .mobile-toggle i {
+        font-size: 1.5rem;
     }
     
     .cta-btn-nav {
